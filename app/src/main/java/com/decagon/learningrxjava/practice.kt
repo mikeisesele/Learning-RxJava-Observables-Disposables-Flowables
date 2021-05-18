@@ -16,6 +16,7 @@ Assignment: Create an observable using flowable and disposable
 
 
 class MainActivity : AppCompatActivity(){
+    lateinit var compositeDisposable: CompositeDisposable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +37,8 @@ class MainActivity : AppCompatActivity(){
 */
 
 
-        // Observable with flowable. without dispose
+        // Observable with flowable. without disposable
+
         // the yellow lines indicate that the data received at the subscriber has not been worked on and still is in memory.
         // so it treats it as potentially unsafe.
 //        ------------------------------------------------------------------------
@@ -73,7 +75,8 @@ class MainActivity : AppCompatActivity(){
         // after the data has been passed to the main thread from the io thread
 
         //-----------------------------------------------------------------------
-        val compositeDisposable = CompositeDisposable()
+
+
 
         val observedResult = Observable.just(getCount())
             .toFlowable(BackpressureStrategy.DROP)
@@ -81,16 +84,21 @@ class MainActivity : AppCompatActivity(){
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { result -> println("$result") }
 
+        compositeDisposable = CompositeDisposable()
 
         compositeDisposable.add(observedResult)
-        // this returns the result to the main thread and clears memory after the operation is done
-
-
+        // this returns the result to the main thread and clears memory after the operation is done (best done in on destroy)
     }
 
     // mock function to get data
     private fun getCount(){
         // get some form of data stream from the web
+    }
+
+    override fun onDestroy(){
+        super.onDestroy()
+
+        compositeDisposable.dispose()
     }
 }
 
