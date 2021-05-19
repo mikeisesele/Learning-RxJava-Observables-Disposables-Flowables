@@ -90,9 +90,8 @@ class MainActivity : AppCompatActivity(){
     }
 
     // function to get data
-    private fun getCount(): List <Int> {
-        val list = arrayListOf(1,2,3,4,5,6)
-        return  list
+    private fun getCount(): List<Int> {
+        return arrayListOf(1, 2, 3, 4, 5, 6)
     }
 
     override fun onDestroy(){
