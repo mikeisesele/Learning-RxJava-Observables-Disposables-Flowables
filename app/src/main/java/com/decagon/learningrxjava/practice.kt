@@ -91,8 +91,11 @@ class MainActivity : AppCompatActivity(){
     }
 
     // mock function to get data
-    private fun getCount(){
+    private fun getCount(): List <Int> {
         // get some form of data stream from the web
+        var list = arrayListOf(1,2,3,4,5,6)
+
+        return  list
     }
 
     override fun onDestroy(){
