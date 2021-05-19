@@ -42,12 +42,12 @@ class MainActivity : AppCompatActivity(){
         // the yellow lines indicate that the data received at the subscriber has not been worked on and still is in memory.
         // so it treats it as potentially unsafe.
 //        ------------------------------------------------------------------------
-        Observable.just(getCount()).toFlowable(BackpressureStrategy.DROP)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ result ->
-                println("$result")
-            })
+//        Observable.just(getCount()).toFlowable(BackpressureStrategy.DROP)
+//            .subscribeOn(Schedulers.io())
+//            .observeOn(AndroidSchedulers.mainThread())
+//            .subscribe({ result ->
+//                println("$result")
+//            })
 
 //            flowable helps filter data and ensure the subscriber can cope with incoming stream of data but as long as memory is not cleared after the operation,
 //              this is not the most efficient approach.
@@ -56,13 +56,13 @@ class MainActivity : AppCompatActivity(){
 
         // Observable with Flowable and Disposable
 //        -----------------------------------------------------------------------
-        Observable.just(getCount())
-            .toFlowable(BackpressureStrategy.DROP)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { result ->
-                println("$result")
-            }.dispose()
+//        Observable.just(getCount())
+//            .toFlowable(BackpressureStrategy.DROP)
+//            .subscribeOn(Schedulers.io())
+//            .observeOn(AndroidSchedulers.mainThread())
+//            .subscribe { result ->
+//                println("$result")
+//            }.dispose()
 
             // network call is done on schedulers.io hence this would not bring any result.
             // because  because since it changed threads the main thread called for disposal,
@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity(){
 
     // function to get data
     private fun getCount(): List<Int> {
-        return arrayListOf(1, 2, 3, 4, 5, 6)
+        return ListOf(1, 2, 3, 4, 5, 6)
     }
 
     override fun onDestroy(){
