@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity(){
 
     // function to get data
     private fun getCount(): List<Int> {
-        return ListOf(1, 2, 3, 4, 5, 6)
+        return listOf(1, 2, 3, 4, 5, 6)
     }
 
     override fun onDestroy(){
