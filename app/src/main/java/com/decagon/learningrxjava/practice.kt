@@ -87,7 +87,6 @@ class MainActivity : AppCompatActivity(){
         compositeDisposable = CompositeDisposable()
 
         compositeDisposable.add(observedResult)
-        // this returns the result to the main thread and clears memory after the operation is done (best done in on destroy)
     }
 
     // function to get data
