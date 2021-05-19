@@ -90,11 +90,9 @@ class MainActivity : AppCompatActivity(){
         // this returns the result to the main thread and clears memory after the operation is done (best done in on destroy)
     }
 
-    // mock function to get data
+    // function to get data
     private fun getCount(): List <Int> {
-        // get some form of data stream from the web
-        var list = arrayListOf(1,2,3,4,5,6)
-
+        val list = arrayListOf(1,2,3,4,5,6)
         return  list
     }
 
